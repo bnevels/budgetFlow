@@ -2,74 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="robots" content="noindex,nofollow,noarchive" />
   <meta name="googlebot" content="noindex,nofollow,noarchive" />
+  <meta name="theme-color" content="#111827" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Budget Flow Pro" />
   <title>Budget Flow Pro</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 </head>
 <body>
-  <header class="topbar">
-    <div>
-      <p class="eyebrow">Private test build</p>
-      <h1>Budget Flow Pro</h1>
-    </div>
-    <button id="themeToggleBtn" class="secondary" type="button" aria-pressed="false">Dark Mode</button>
-  </header>
-
+  <header class="topbar"><div><p class="eyebrow">Private beta test build</p><h1>Budget Flow Pro</h1></div><button id="themeToggleBtn" class="secondary" type="button">Dark Mode</button></header>
   <nav class="tabs" aria-label="Primary navigation">
     <button class="nav-item active" data-tab="budget" type="button">Budget</button>
     <button class="nav-item" data-tab="receipts" type="button">Receipts</button>
+    <button class="nav-item" data-tab="exports" type="button">PDF Export</button>
+    <button class="nav-item" data-tab="admin" type="button">Admin</button>
+    <button class="nav-item" data-tab="backup" type="button">Cloud Backup</button>
+    <button class="nav-item" data-tab="settings" type="button">Settings</button>
   </nav>
-
   <main>
-    <section id="tab-budget" class="tab active">
-      <div class="card">
-        <h2>Budget</h2>
-        <label>Monthly income <input id="monthlyIncome" type="number" step="0.01" inputmode="decimal"></label>
-        <button id="rolloverBtn" type="button">Rollover Month</button>
-      </div>
-    </section>
-
-    <section id="tab-receipts" class="tab">
-      <div class="card">
-        <h2>Receipt Scanner</h2>
-        <p class="helper">Use the camera on HTTPS or Netlify. Capture a receipt, read the text, then save it. You can also enter the amount manually and save.</p>
-
-        <div class="controls">
-          <button id="startCameraBtn" type="button">Start Camera</button>
-          <button id="captureReceiptBtn" type="button" disabled>Capture Receipt</button>
-          <button id="runOcrBtn" type="button" disabled>Read Receipt Text</button>
-          <button id="saveReceiptBtn" type="button" disabled>Save Receipt</button>
-        </div>
-
-        <div id="statusMessage" class="status" role="status" aria-live="polite"></div>
-
-        <label>Amount <input id="receiptAmount" type="number" step="0.01" inputmode="decimal"></label>
-        <label>Vendor / Note <input id="receiptNote" type="text" autocomplete="off"></label>
-
-        <div class="preview-wrap">
-          <video id="cameraVideo" playsinline autoplay muted></video>
-          <img id="receiptPreview" class="receipt-preview" alt="Captured receipt preview" hidden>
-          <div class="preview-label">Live preview / captured image</div>
-        </div>
-
-        <canvas id="captureCanvas" hidden></canvas>
-        <pre id="ocrOutput" class="ocr-output"></pre>
-      </div>
-
-      <div class="card">
-        <div class="section-header">
-          <h3>Saved Receipts</h3>
-          <button id="clearReceiptsBtn" class="secondary danger" type="button">Clear Receipts</button>
-        </div>
-        <div id="receiptsList"></div>
-      </div>
-    </section>
+    <section id="tab-budget" class="tab active"><div class="card"><h2>Budget</h2><label>Monthly income <input id="monthlyIncome" type="number" step="0.01" inputmode="decimal"></label><button id="rolloverBtn" type="button">Rollover Month</button></div><div class="grid" id="categorySummary"></div></section>
+    <section id="tab-receipts" class="tab"><div class="card"><h2>Receipt Scanner</h2><p class="helper">Capture, OCR, categorize, save, and sync receipts during the private beta.</p><div class="controls"><button id="startCameraBtn" type="button">Start Camera</button><button id="captureReceiptBtn" type="button" disabled>Capture Receipt</button><button id="runOcrBtn" type="button" disabled>AI Parse Receipt</button><button id="saveReceiptBtn" type="button" disabled>Save Receipt</button></div><div id="statusMessage" class="status" role="status" aria-live="polite"></div><label>Amount <input id="receiptAmount" type="number" step="0.01" inputmode="decimal"></label><label>Vendor / Note <input id="receiptNote" type="text" autocomplete="off"></label><label>Category <select id="receiptCategory"></select></label><div class="preview-wrap"><video id="cameraVideo" playsinline autoplay muted></video><img id="receiptPreview" class="receipt-preview" alt="Captured receipt preview" hidden><div class="preview-label">Live preview / captured image</div></div><canvas id="captureCanvas" hidden></canvas><pre id="ocrOutput" class="ocr-output"></pre></div><div class="card"><div class="section-header"><h3>Saved Receipts</h3><button id="clearReceiptsBtn" class="secondary danger" type="button">Clear Receipts</button></div><div id="receiptsList"></div></div></section>
+    <section id="tab-exports" class="tab"><div class="card"><h2>PDF Export</h2><p class="helper">Export a receipt report for testing, reimbursement, or accountant review.</p><button id="exportPdfBtn" type="button">Export Receipts PDF</button><button id="exportJsonBtn" type="button">Export Backup JSON</button></div></section>
+    <section id="tab-admin" class="tab"><div class="card"><h2>Admin Dashboard</h2><div class="grid" id="adminMetrics"></div></div><div class="card"><h3>Category Totals</h3><div id="adminCategoryTotals"></div></div></section>
+    <section id="tab-backup" class="tab"><div class="card"><h2>Cloud Receipt Backup</h2><p class="helper">Beta-safe cloud backup shell. Add a private endpoint later for Supabase, Firebase, Netlify Functions, or your server. Until then, JSON export/import protects test data.</p><label>Backup endpoint URL <input id="backupEndpoint" type="url" placeholder="https://your-api.example.com/receipts/backup"></label><label>Backup API key <input id="backupApiKey" type="password" placeholder="Private beta key"></label><div class="controls"><button id="saveBackupSettingsBtn" type="button">Save Backup Settings</button><button id="syncBackupBtn" type="button">Sync Backup Now</button><button id="restoreBackupBtn" type="button">Restore From Cloud</button></div><label>Import backup JSON <input id="importBackupFile" type="file" accept="application/json"></label><div id="backupStatus" class="status"></div></div></section>
+    <section id="tab-settings" class="tab"><div class="card"><h2>Settings</h2><p class="helper">Subscriptions are hidden for beta testing. Checkout can be connected when you are ready to go public.</p><label>Stripe checkout URL <input id="stripeCheckoutUrl" type="url" placeholder="Hidden until public launch"></label><button id="saveSettingsBtn" type="button">Save Settings</button><button id="subscribeBtn" type="button" hidden>Subscribe</button><h3>Install App</h3><p class="helper">On iPhone: Share → Add to Home Screen. On Android: browser menu → Install App.</p></div></section>
   </main>
-
   <script src="app.js"></script>
 </body>
 </html>
