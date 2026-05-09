@@ -1,1 +1,1 @@
-{"name":"MidSouth Utility App","short_name":"MidSouth","start_url":"./index.html?source=midsouth","display":"standalone","background_color":"#ffffff","theme_color":"#111111","id":"midsouth-utility-app"}
+{"name":"Budget Flow Pro","short_name":"BudgetFlow","description":"Private beta receipt scanner, budget tracker, and expense manager.","id":"budget-flow-pro","start_url":"./index.html","scope":"./","display":"standalone","orientation":"portrait","background_color":"#f4f7fb","theme_color":"#111827","categories":["finance","productivity","business"],"lang":"en-US"}
