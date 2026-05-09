@@ -1,0 +1,29 @@
+{
+  "name": "budget-flow-pro",
+  "version": "1.0.0-beta.1",
+  "description": "Budget Flow Pro desktop app.",
+  "main": "electron/main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win nsis --x64",
+    "pack:win": "electron-builder --win dir --x64"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.nevels.budgetflowpro",
+    "productName": "Budget Flow Pro",
+    "files": ["index.html", "styles.css", "app.js", "manifest.json", "sw.js", "electron/**/*"],
+    "directories": {"output": "dist"},
+    "win": {"target": "nsis"},
+    "nsis": {
+      "oneClick": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Budget Flow Pro"
+    }
+  }
+}
