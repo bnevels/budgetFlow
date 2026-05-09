@@ -1,16 +1,52 @@
-# Budget App - Netlify Deployment Guide
+# Budget Flow Pro
 
-## How to Deploy to Netlify
-1. Create a new repository on [GitHub](https://github.com/new).
-2. Upload the files from this `netlify_deployment` folder to your new repository.
-3. Go to [Netlify](https://app.netlify.com/).
-4. Click "Add new site" -> "Import from existing project".
-5. Connect your GitHub repository.
-6. Under "Build settings", ensure:
-   - Base directory: (leave empty)
-   - Build command: `echo 'Deploying static site'`
-   - Publish directory: `.`
-7. Click "Deploy site".
-8. Once deployed, go to **Site settings** -> **Domain management** -> **Custom domains**.
-9. Add `nevels1953.com`.
-10. Follow the instructions to update your DNS records at your domain registrar.
+Budget Flow Pro is the single merged app identity for this project.
+
+## Merge note
+
+**Budget Planner Premium+ has been merged into Budget Flow Pro.**
+
+Use **Budget Flow Pro** everywhere going forward for:
+- app name
+- installed PWA name
+- browser title
+- Netlify deployment
+- nevels1953.com
+- receipt scanner
+- OCR reader
+- PDF export
+- cloud backup
+- expense categories
+- admin dashboard
+- Stripe subscription preparation
+
+Budget Planner Premium+ should be treated as an older/alternate name and should not be used as a separate public app.
+
+## Private beta deployment
+
+This app is intended to run at:
+
+```text
+https://nevels1953.com
+```
+
+Recommended Netlify settings:
+
+- Base directory: leave empty
+- Build command: `echo 'Deploying Budget Flow Pro'`
+- Publish directory: `.`
+- Custom domain: `nevels1953.com`
+
+## Private testing visibility
+
+The app currently includes `noindex`, `nofollow`, and `noarchive` metadata so it can be tested privately before public launch.
+
+## Camera/OCR testing
+
+Camera access requires HTTPS. Test on:
+
+- `https://nevels1953.com`
+- Netlify HTTPS preview URL
+- localhost during development
+
+Plain HTTP will usually block the camera.
