@@ -235,6 +235,17 @@ body.dark .ocr-confidence.low{background:#7f1d1d;color:#fecaca}
 }
 .lightbox-details p{margin:4px 0}
 
+/* --- Code Inline --- */
+code{
+  background:var(--bg);border:1px solid var(--border);
+  padding:2px 6px;border-radius:6px;font-size:.82rem;
+  font-family:'SF Mono',Monaco,Consolas,monospace;
+}
+
+/* --- Download Link --- */
+a.file-upload-btn{text-decoration:none;color:var(--primaryText);background:var(--primary);border-color:var(--primary)}
+a.file-upload-btn:hover{opacity:.9}
+
 /* --- Loading Spinner --- */
 .spinner{
   display:inline-block;width:18px;height:18px;

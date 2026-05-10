@@ -1,4 +1,4 @@
-name: Build Budget Flow Pro Windows Installer
+name: Build Budget Flow Pro Installers
 
 on:
   push:
@@ -6,9 +6,27 @@ on:
   workflow_dispatch:
 
 jobs:
+  build-app-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build app.zip bundle
+        run: |
+          zip -r BudgetFlowPro-app.zip \
+            index.html app.js styles.css manifest.json sw.js \
+            install-budget-flow-pro.bat electron/main.js package.json \
+            INSTALL.md
+
+      - name: Upload app.zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: BudgetFlowPro-app
+          path: BudgetFlowPro-app.zip
+
   build-windows-installer:
     runs-on: windows-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
