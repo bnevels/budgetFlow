@@ -1,43 +1,37 @@
 # Budget Flow Pro — Installation Guide
 
-## Phone (iPhone / Android)
+## Phone (Easiest — One Tap Install)
 
-1. Open **https://nevels1953.com** in your phone's browser (Safari on iPhone, Chrome on Android).
-2. **iPhone**: Tap the Share button → "Add to Home Screen".
-3. **Android**: Tap the browser menu (⋮) → "Install App" or "Add to Home Screen".
-4. The app icon will appear on your home screen and works offline.
+1. Open **https://nevels1953.com** in your phone's browser.
+2. Go to **Settings** tab → tap **"Install Budget Flow Pro"** button.
+3. If the button isn't visible:
+   - **iPhone**: Tap Share (box with arrow) → "Add to Home Screen"
+   - **Android**: Tap browser menu (⋮) → "Install App" or "Add to Home Screen"
+4. The app icon appears on your home screen and works offline.
 
-## Desktop (Windows)
+## Desktop — One-Click Installers
 
-### Option A: Quick Install (shortcut)
-1. Double-click `install-budget-flow-pro.bat`.
-2. A desktop shortcut to Budget Flow Pro will be created.
+Download the installer for your platform from [GitHub Releases](https://github.com/bnevels/budgetFlow/releases/latest):
 
-### Option B: Full Desktop App (Electron)
-1. Make sure [Node.js](https://nodejs.org/) is installed.
-2. Open a terminal in this folder and run:
+| Platform | File | How to Install |
+|----------|------|---------------|
+| **Windows** | `.exe` | Double-click → installs automatically → launches the app |
+| **Mac** | `.dmg` | Open → drag Budget Flow Pro to Applications |
+| **Linux** | `.AppImage` | `chmod +x BudgetFlowPro.AppImage` → double-click to run |
+
+## Desktop — From Source (Advanced)
+
+1. Install [Node.js](https://nodejs.org/) (v20+).
+2. Open a terminal in this folder:
    ```
    npm install
    npm start
    ```
-3. The app opens as a standalone desktop window.
 
-### Option C: Build Windows Installer (.exe)
-1. Make sure Node.js is installed.
-2. Run:
-   ```
-   npm install
-   npm run dist:win
-   ```
-3. Find the `.exe` installer in the `dist/` folder.
+## Portable Web Version
 
-## Desktop (Mac)
-1. Make sure [Node.js](https://nodejs.org/) is installed.
-2. Open Terminal in this folder and run:
-   ```
-   npm install
-   npm start
-   ```
+Extract `BudgetFlowPro-app.zip` and open `index.html` in any browser. No installation needed.
 
 ## All Data Is Local
-Your receipts and budget data are stored in your browser's localStorage. No server or account required. Use the Cloud Backup tab to export/import JSON backups.
+
+Your receipts and budget data are stored in your browser/app's local storage. No server, account, or internet connection required after install. Use the Cloud Backup tab to export/import JSON backups.

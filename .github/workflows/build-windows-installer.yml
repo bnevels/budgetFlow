@@ -16,6 +16,7 @@ jobs:
         run: |
           zip -r BudgetFlowPro-app.zip \
             index.html app.js styles.css manifest.json sw.js \
+            icon-192.png icon-512.png \
             install-budget-flow-pro.bat electron/main.js package.json \
             INSTALL.md
 

@@ -243,8 +243,9 @@ code{
 }
 
 /* --- Download Link --- */
-a.file-upload-btn{text-decoration:none;color:var(--primaryText);background:var(--primary);border-color:var(--primary)}
+a.file-upload-btn{text-decoration:none;text-align:center;color:var(--primaryText);background:var(--primary);border-color:var(--primary)}
 a.file-upload-btn:hover{opacity:.9}
+a.file-upload-btn.secondary{background:var(--card);color:var(--text);border-color:var(--border)}
 
 /* --- Loading Spinner --- */
 .spinner{

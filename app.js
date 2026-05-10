@@ -653,8 +653,57 @@ function wireEvents() {
   // Settings
   els.saveSettingsBtn?.addEventListener('click', saveSettings);
 
+  // PWA Install
+  const installBtn = $('installPwaBtn');
+  if (installBtn) {
+    installBtn.addEventListener('click', installPWA);
+  }
+
   // Cleanup
   window.addEventListener('beforeunload', stopCamera);
+}
+
+/* --- PWA Install Prompt --- */
+
+let deferredInstallPrompt = null;
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const btn = $('installPwaBtn');
+  const hint = $('installHint');
+  if (btn) btn.hidden = false;
+  if (hint) hint.hidden = true;
+});
+
+window.addEventListener('appinstalled', () => {
+  deferredInstallPrompt = null;
+  const btn = $('installPwaBtn');
+  const hint = $('installHint');
+  const installed = $('installedHint');
+  if (btn) btn.hidden = true;
+  if (hint) hint.hidden = true;
+  if (installed) installed.hidden = false;
+});
+
+function installPWA() {
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  deferredInstallPrompt.userChoice.then(result => {
+    if (result.outcome === 'accepted') {
+      const btn = $('installPwaBtn');
+      if (btn) btn.hidden = true;
+    }
+    deferredInstallPrompt = null;
+  });
+}
+
+if (window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true) {
+  const hint = $('installHint');
+  const installed = $('installedHint');
+  if (hint) hint.hidden = true;
+  if (installed) installed.hidden = false;
 }
 
 /* --- Init --- */

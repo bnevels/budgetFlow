@@ -11,6 +11,8 @@
   <meta name="apple-mobile-web-app-title" content="Budget Flow Pro" />
   <title>Budget Flow Pro</title>
   <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon-192.png" type="image/png" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
@@ -169,17 +171,26 @@
         </label>
         <button id="saveSettingsBtn" type="button">Save Settings</button>
         <button id="subscribeBtn" type="button" hidden>Subscribe</button>
-        <h3>Install App</h3>
-        <p class="helper">On iPhone: Share &rarr; Add to Home Screen.<br>On Android: browser menu &rarr; Install App.</p>
+        <h3>Install on Phone</h3>
+        <div class="controls">
+          <button id="installPwaBtn" class="btn-primary" type="button" hidden>Install Budget Flow Pro</button>
+        </div>
+        <p id="installHint" class="helper">On iPhone: Share &rarr; Add to Home Screen.<br>On Android: browser menu (&#8942;) &rarr; Install App.</p>
+        <p id="installedHint" class="helper" hidden>Budget Flow Pro is installed on your device.</p>
       </div>
       <div class="card">
         <h3>Download Desktop App</h3>
-        <p class="helper">Download Budget Flow Pro as a standalone app for Windows, Mac, or Linux. Includes all files needed to run offline.</p>
+        <p class="helper">One-click installers for Windows, Mac, and Linux.</p>
         <div class="controls">
-          <a id="downloadAppZip" href="https://github.com/bnevels/budgetFlow/raw/main/dist/BudgetFlowPro-app.zip" class="file-upload-btn" download>Download App.zip</a>
+          <a href="https://github.com/bnevels/budgetFlow/releases/latest" class="file-upload-btn" target="_blank" rel="noopener">Download Installer</a>
+          <a id="downloadAppZip" href="https://github.com/bnevels/budgetFlow/raw/main/dist/BudgetFlowPro-app.zip" class="file-upload-btn secondary" download>Download App.zip</a>
         </div>
-        <p class="helper"><strong>Windows:</strong> Extract the zip, then double-click <code>install-budget-flow-pro.bat</code> or run <code>npm install &amp;&amp; npm start</code> for the full desktop app.<br>
-        <strong>Mac/Linux:</strong> Extract, then run <code>npm install &amp;&amp; npm start</code> in terminal.</p>
+        <p class="helper">
+          <strong>Windows:</strong> Download the <code>.exe</code> installer &mdash; double-click to install.<br>
+          <strong>Mac:</strong> Download the <code>.dmg</code> &mdash; open and drag to Applications.<br>
+          <strong>Linux:</strong> Download <code>.AppImage</code> &mdash; <code>chmod +x</code> then run.<br>
+          <strong>Portable:</strong> Download App.zip &mdash; extract and open <code>index.html</code> in any browser.
+        </p>
       </div>
     </section>
   </main>

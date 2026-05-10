@@ -1,0 +1,113 @@
+name: Release Budget Flow Pro
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. 1.0.0)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-web-bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build app.zip web bundle
+        run: |
+          zip -r BudgetFlowPro-app.zip \
+            index.html app.js styles.css manifest.json sw.js \
+            install-budget-flow-pro.bat electron/main.js package.json INSTALL.md
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-bundle
+          path: BudgetFlowPro-app.zip
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npm run dist:win
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: dist/*.exe
+
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npm run dist:mac
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mac-installer
+          path: dist/*.dmg
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npm run dist:linux
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-installer
+          path: dist/*.AppImage
+
+  publish-release:
+    needs: [build-web-bundle, build-windows, build-mac, build-linux]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: List artifacts
+        run: find artifacts -type f
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name || format('v{0}', github.event.inputs.version) }}
+          name: Budget Flow Pro ${{ github.ref_name || github.event.inputs.version }}
+          body: |
+            ## Budget Flow Pro
+
+            ### Download & Install
+
+            | Platform | File | Instructions |
+            |----------|------|-------------|
+            | **Windows** | `.exe` installer | Download and double-click to install |
+            | **Mac** | `.dmg` image | Download, open, drag to Applications |
+            | **Linux** | `.AppImage` | Download, `chmod +x`, then run |
+            | **Phone** | Visit the web app | Open in browser → Add to Home Screen |
+            | **Web Bundle** | `app.zip` | Extract and open `index.html` in any browser |
+
+            ### Phone Installation
+            1. Open **https://nevels1953.com** on your phone
+            2. **iPhone**: Share → Add to Home Screen
+            3. **Android**: Menu (⋮) → Install App
+          files: |
+            artifacts/web-bundle/*
+            artifacts/windows-installer/*
+            artifacts/mac-installer/*
+            artifacts/linux-installer/*
+          draft: false
+          prerelease: false

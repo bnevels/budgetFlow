@@ -1,15 +1,20 @@
 {
   "name": "Budget Flow Pro",
   "short_name": "BudgetFlow",
-  "description": "Receipt scanner with camera and OCR, budget tracker, and expense manager. Capture receipts, auto-read with AI, save and retrieve anytime.",
+  "description": "Receipt scanner with camera and OCR, budget tracker, and expense manager.",
   "id": "budget-flow-pro",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#f4f7fb",
-  "theme_color": "#111827",
+  "theme_color": "#2563eb",
   "categories": ["finance", "productivity", "business"],
   "lang": "en-US",
-  "permissions": ["camera"]
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
 }
