@@ -1,13 +1,16 @@
 {
   "name": "budget-flow-pro",
   "version": "1.0.0-beta.1",
-  "description": "Budget Flow Pro desktop app.",
+  "description": "Budget Flow Pro — Receipt scanner with camera and OCR, budget tracker, and expense manager.",
   "main": "electron/main.js",
   "private": true,
   "scripts": {
     "start": "electron .",
     "dist:win": "electron-builder --win nsis --x64",
-    "pack:win": "electron-builder --win dir --x64"
+    "dist:mac": "electron-builder --mac dmg --x64",
+    "dist:linux": "electron-builder --linux AppImage --x64",
+    "pack:win": "electron-builder --win dir --x64",
+    "build:zip": "zip -r dist/BudgetFlowPro-app.zip index.html app.js styles.css manifest.json sw.js icon-192.png icon-512.png install-budget-flow-pro.bat electron/main.js package.json INSTALL.md"
   },
   "devDependencies": {
     "electron": "^31.7.7",
@@ -16,14 +19,30 @@
   "build": {
     "appId": "com.nevels.budgetflowpro",
     "productName": "Budget Flow Pro",
-    "files": ["index.html", "styles.css", "app.js", "manifest.json", "sw.js", "electron/**/*"],
+    "files": [
+      "index.html", "styles.css", "app.js",
+      "manifest.json", "sw.js",
+      "icon-192.png", "icon-512.png",
+      "electron/**/*"
+    ],
     "directories": {"output": "dist"},
-    "win": {"target": "nsis"},
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.finance"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Office"
+    },
     "nsis": {
-      "oneClick": false,
+      "oneClick": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Budget Flow Pro"
+      "shortcutName": "Budget Flow Pro",
+      "runAfterFinish": true
     }
   }
 }
