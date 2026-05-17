@@ -1,30 +1,41 @@
-# Budget Planner Premium+
+# Budget Flow Pro
 
-Standalone shared budget web app for `https://nevels1953.com`.
+Budget Flow Pro is a standalone web app for `nevels1953.com`. It includes a dashboard, monthly budget, expense ledger, bills, receipt OCR, Stripe payment actions, reports, local backups, and install support.
 
-Programmer: Bobby Nevels.
+## Run locally
 
-No subscription is required at this time.
+```bash
+node server.js
+```
 
-## Included
+Open `http://localhost:4173`.
 
-- Monthly budget tracking
-- Bills and due dates
-- Payment link support
-- Receipt scanner
-- Camera OCR with Tesseract.js
-- Saved receipt history
-- Light and dark mode
-- Install button for Android and iPhone guidance
-- Offline-capable service worker
-- Local backup export/import
+## Stripe
 
-## Netlify
+Stripe Checkout is restored through the Netlify function at `/.netlify/functions/create-stripe-checkout`.
 
-Recommended settings:
+Set this environment variable on the Netlify site:
 
-- Build command: `echo 'Deploying Budget Planner Premium Plus'`
-- Publish directory: `.`
-- Custom domain: `nevels1953.com`
+```text
+STRIPE_SECRET_KEY=sk_live_or_test_key
+```
 
-Camera access on phones requires HTTPS, so use the live Netlify/custom-domain URL for Android and iPhone testing.
+Optional variables:
+
+```text
+STRIPE_SUCCESS_URL=https://nevels1953.com/?stripe=success
+STRIPE_CANCEL_URL=https://nevels1953.com/?stripe=cancel
+STRIPE_CURRENCY=usd
+```
+
+The browser app also supports a Stripe Payment Link template in Settings for client-only fallback links.
+
+## Deploy
+
+The site is static plus Netlify Functions. Netlify can deploy it directly from the `bnevels/budgetFlow` GitHub repository using:
+
+```text
+Publish directory: .
+Build command: echo 'Deploying Budget Flow Pro'
+Functions directory: netlify/functions
+```
