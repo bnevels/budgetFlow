@@ -1,29 +1,18 @@
 {
-  "name": "budget-planner-premium-plus",
-  "version": "1.0.0",
-  "description": "Standalone Budget Planner Premium+ web app for nevels1953.com.",
-  "main": "electron/main.js",
+  "name": "budget-flow-pro",
+  "version": "2.0.0",
+  "description": "Standalone Budget Flow Pro web app for nevels1953.com.",
   "private": true,
+  "main": "server.js",
   "scripts": {
-    "start": "electron .",
-    "dist:win": "electron-builder --win nsis --x64",
-    "pack:win": "electron-builder --win dir --x64"
+    "start": "node server.js"
   },
-  "devDependencies": {
-    "electron": "^31.7.7",
-    "electron-builder": "^24.13.3"
-  },
-  "build": {
-    "appId": "com.nevels.budgetplannerpremiumplus",
-    "productName": "Budget Planner Premium+",
-    "files": ["index.html", "styles.css", "app.js", "manifest.json", "sw.js", "icons/**/*", "electron/**/*"],
-    "directories": { "output": "dist" },
-    "win": { "target": "nsis" },
-    "nsis": {
-      "oneClick": false,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "shortcutName": "Budget Planner Premium+"
-    }
-  }
+  "keywords": [
+    "budget",
+    "cashflow",
+    "receipts",
+    "stripe",
+    "pwa"
+  ],
+  "license": "MIT"
 }
