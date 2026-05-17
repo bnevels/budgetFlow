@@ -1,17 +1,17 @@
 @echo off
 setlocal
-title Budget Flow Pro Installer
+title Budget Planner Premium+ Installer
 
 echo ==============================================
-echo        Budget Flow Pro - Easy Installer
+echo      Budget Planner Premium+ - Easy Installer
 echo ==============================================
 echo.
-echo This will create a desktop shortcut and open Budget Flow Pro.
+echo This will create a desktop shortcut and open Budget Planner Premium+.
 echo.
 
-set "APP_NAME=Budget Flow Pro"
+set "APP_NAME=Budget Planner Premium+"
 set "APP_URL=https://nevels1953.com"
-set "SHORTCUT=%USERPROFILE%\Desktop\Budget Flow Pro.url"
+set "SHORTCUT=%USERPROFILE%\Desktop\Budget Planner Premium+.url"
 
 echo Creating desktop shortcut...
 (
@@ -25,16 +25,15 @@ echo.
 echo Desktop shortcut created:
 echo %SHORTCUT%
 echo.
-echo Opening Budget Flow Pro now...
+echo Opening Budget Planner Premium+ now...
 start "" "%APP_URL%"
 
 echo.
 echo INSTALL COMPLETE!
 echo.
-echo To use the app later, double-click "Budget Flow Pro" on your Desktop.
+echo To use the app later, double-click "Budget Planner Premium+" on your Desktop.
 echo.
-echo On Chrome or Edge, you can also click the install icon in the address bar
-echo to install it like a regular app.
+echo On Chrome or Edge, you can also click Install App in the web app.
 echo.
 pause
 endlocal

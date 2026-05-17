@@ -1,1 +1,20 @@
-{"name":"Budget Flow Pro","short_name":"BudgetFlow","description":"Private beta receipt scanner, budget tracker, and expense manager.","id":"budget-flow-pro","start_url":"./index.html","scope":"./","display":"standalone","orientation":"portrait","background_color":"#f4f7fb","theme_color":"#111827","categories":["finance","productivity","business"],"lang":"en-US"}
+{
+  "name": "Budget Planner Premium Plus",
+  "short_name": "Budget Plus",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#0f9f6e",
+  "description": "Standalone shared budget app with bills, receipt scanning, Camera OCR, payment links, and no subscription requirement.",
+  "orientation": "portrait-primary",
+  "categories": ["finance", "productivity", "utilities"],
+  "icons": [
+    { "src": "icons/logo-n.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Receipts", "short_name": "Receipts", "description": "Open receipt scanner", "url": "./?tab=receipts", "icons": [{ "src": "icons/logo-n.svg", "sizes": "any", "type": "image/svg+xml" }] }
+  ],
+  "prefer_related_applications": false
+}

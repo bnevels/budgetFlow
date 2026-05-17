@@ -8,7 +8,7 @@ function createWindow() {
     minWidth: 1100,
     minHeight: 760,
     autoHideMenuBar: true,
-    title: 'Budget Flow Pro',
+    title: 'Budget Planner Premium+',
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false
@@ -20,7 +20,6 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow();
-
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });

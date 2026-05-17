@@ -1,7 +1,7 @@
 {
-  "name": "budget-flow-pro",
-  "version": "1.0.0-beta.1",
-  "description": "Budget Flow Pro desktop app.",
+  "name": "budget-planner-premium-plus",
+  "version": "1.0.0",
+  "description": "Standalone Budget Planner Premium+ web app for nevels1953.com.",
   "main": "electron/main.js",
   "private": true,
   "scripts": {
@@ -14,16 +14,16 @@
     "electron-builder": "^24.13.3"
   },
   "build": {
-    "appId": "com.nevels.budgetflowpro",
-    "productName": "Budget Flow Pro",
-    "files": ["index.html", "styles.css", "app.js", "manifest.json", "sw.js", "electron/**/*"],
-    "directories": {"output": "dist"},
-    "win": {"target": "nsis"},
+    "appId": "com.nevels.budgetplannerpremiumplus",
+    "productName": "Budget Planner Premium+",
+    "files": ["index.html", "styles.css", "app.js", "manifest.json", "sw.js", "icons/**/*", "electron/**/*"],
+    "directories": { "output": "dist" },
+    "win": { "target": "nsis" },
     "nsis": {
       "oneClick": false,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Budget Flow Pro"
+      "shortcutName": "Budget Planner Premium+"
     }
   }
 }

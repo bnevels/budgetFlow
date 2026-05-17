@@ -3,36 +3,142 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="robots" content="noindex,nofollow,noarchive" />
-  <meta name="googlebot" content="noindex,nofollow,noarchive" />
-  <meta name="theme-color" content="#111827" />
+  <meta name="theme-color" content="#0f9f6e" />
+  <meta name="description" content="Standalone shared budget app with bills, receipt scanning, Camera OCR, payment links, and install support for nevels1953.com." />
+  <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Budget Flow Pro" />
-  <title>Budget Flow Pro</title>
+  <meta name="apple-mobile-web-app-title" content="Budget Plus" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Budget Planner Premium+</title>
   <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/logo-n.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/logo-n.svg" />
   <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js" defer></script>
+  <script src="app.js" defer></script>
 </head>
 <body>
-  <header class="topbar"><div><p class="eyebrow">Private beta test build</p><h1>Budget Flow Pro</h1></div><button id="themeToggleBtn" class="secondary" type="button">Dark Mode</button></header>
-  <nav class="tabs" aria-label="Primary navigation">
-    <button class="nav-item active" data-tab="budget" type="button">Budget</button>
-    <button class="nav-item" data-tab="receipts" type="button">Receipts</button>
-    <button class="nav-item" data-tab="exports" type="button">PDF Export</button>
-    <button class="nav-item" data-tab="admin" type="button">Admin</button>
-    <button class="nav-item" data-tab="backup" type="button">Cloud Backup</button>
-    <button class="nav-item" data-tab="settings" type="button">Settings</button>
-  </nav>
-  <main>
-    <section id="tab-budget" class="tab active"><div class="card"><h2>Budget</h2><label>Monthly income <input id="monthlyIncome" type="number" step="0.01" inputmode="decimal"></label><button id="rolloverBtn" type="button">Rollover Month</button></div><div class="grid" id="categorySummary"></div></section>
-    <section id="tab-receipts" class="tab"><div class="card"><h2>Receipt Scanner</h2><p class="helper">Capture, OCR, categorize, save, and sync receipts during the private beta.</p><div class="controls"><button id="startCameraBtn" type="button">Start Camera</button><button id="captureReceiptBtn" type="button" disabled>Capture Receipt</button><button id="runOcrBtn" type="button" disabled>AI Parse Receipt</button><button id="saveReceiptBtn" type="button" disabled>Save Receipt</button></div><div id="statusMessage" class="status" role="status" aria-live="polite"></div><label>Amount <input id="receiptAmount" type="number" step="0.01" inputmode="decimal"></label><label>Vendor / Note <input id="receiptNote" type="text" autocomplete="off"></label><label>Category <select id="receiptCategory"></select></label><div class="preview-wrap"><video id="cameraVideo" playsinline autoplay muted></video><img id="receiptPreview" class="receipt-preview" alt="Captured receipt preview" hidden><div class="preview-label">Live preview / captured image</div></div><canvas id="captureCanvas" hidden></canvas><pre id="ocrOutput" class="ocr-output"></pre></div><div class="card"><div class="section-header"><h3>Saved Receipts</h3><button id="clearReceiptsBtn" class="secondary danger" type="button">Clear Receipts</button></div><div id="receiptsList"></div></div></section>
-    <section id="tab-exports" class="tab"><div class="card"><h2>PDF Export</h2><p class="helper">Export a receipt report for testing, reimbursement, or accountant review.</p><button id="exportPdfBtn" type="button">Export Receipts PDF</button><button id="exportJsonBtn" type="button">Export Backup JSON</button></div></section>
-    <section id="tab-admin" class="tab"><div class="card"><h2>Admin Dashboard</h2><div class="grid" id="adminMetrics"></div></div><div class="card"><h3>Category Totals</h3><div id="adminCategoryTotals"></div></div></section>
-    <section id="tab-backup" class="tab"><div class="card"><h2>Cloud Receipt Backup</h2><p class="helper">Beta-safe cloud backup shell. Add a private endpoint later for Supabase, Firebase, Netlify Functions, or your server. Until then, JSON export/import protects test data.</p><label>Backup endpoint URL <input id="backupEndpoint" type="url" placeholder="https://your-api.example.com/receipts/backup"></label><label>Backup API key <input id="backupApiKey" type="password" placeholder="Private beta key"></label><div class="controls"><button id="saveBackupSettingsBtn" type="button">Save Backup Settings</button><button id="syncBackupBtn" type="button">Sync Backup Now</button><button id="restoreBackupBtn" type="button">Restore From Cloud</button></div><label>Import backup JSON <input id="importBackupFile" type="file" accept="application/json"></label><div id="backupStatus" class="status"></div></div></section>
-    <section id="tab-settings" class="tab"><div class="card"><h2>Settings</h2><p class="helper">Subscriptions are hidden for beta testing. Checkout can be connected when you are ready to go public.</p><label>Stripe checkout URL <input id="stripeCheckoutUrl" type="url" placeholder="Hidden until public launch"></label><button id="saveSettingsBtn" type="button">Save Settings</button><button id="subscribeBtn" type="button" hidden>Subscribe</button><h3>Install App</h3><p class="helper">On iPhone: Share → Add to Home Screen. On Android: browser menu → Install App.</p></div></section>
-  </main>
-  <script src="app.js"></script>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="brand-lockup">
+        <img class="app-logo" src="icons/logo-n.svg" alt="Budget Planner Premium+" />
+        <div>
+          <p class="eyebrow">Standalone Shared Budget App</p>
+          <h1>Budget Planner Premium+</h1>
+          <p id="monthLabel" class="muted">Current month</p>
+          <p class="programmer-credit">Programmer: Bobby Nevels</p>
+          <div class="trust-row" aria-label="App status">
+            <span>No subscription required</span>
+            <span>Private device storage</span>
+            <span>Android + iPhone install</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <button id="installBtn" class="btn primary" type="button">Install App</button>
+        <button id="themeBtn" class="btn ghost" type="button">Dark Mode</button>
+      </div>
+    </header>
+
+    <nav class="bottom-nav" aria-label="Budget sections">
+      <button class="nav-item active" data-tab="home" type="button">Home</button>
+      <button class="nav-item" data-tab="budget" type="button">Budget</button>
+      <button class="nav-item" data-tab="bills" type="button">Bills</button>
+      <button class="nav-item" data-tab="receipts" type="button">Receipts</button>
+      <button class="nav-item" data-tab="settings" type="button">Settings</button>
+    </nav>
+
+    <main class="content">
+      <section id="tab-home" class="tab active">
+        <div class="spotlight panel">
+          <div>
+            <div class="spotlight-label">Available Balance</div>
+            <div id="balanceMain" class="spotlight-value">$0.00</div>
+            <div class="muted">Income <span id="incomeInline">$0.00</span> | Expenses <span id="expensesInline">$0.00</span></div>
+          </div>
+          <div class="stack-actions">
+            <button id="rolloverBtn" class="btn primary" type="button">Close Month</button>
+            <button id="quickReceiptBtn" class="btn ghost" type="button">Scan Receipt</button>
+          </div>
+        </div>
+        <div class="card-grid">
+          <article class="stat-card panel"><span>Monthly Income</span><strong id="incomeCard">$0.00</strong></article>
+          <article class="stat-card panel"><span>Monthly Expenses</span><strong id="expenseCard">$0.00</strong></article>
+          <article class="stat-card panel"><span>Open Bills</span><strong id="openBillsCard">0</strong></article>
+          <article class="stat-card panel"><span>Saved Receipts</span><strong id="receiptsCard">0</strong></article>
+        </div>
+        <div class="layout-2">
+          <section class="panel"><h2>Spending by Category</h2><div id="categoryChart" class="chart-list"></div></section>
+          <section class="panel"><h2>Quick Summary</h2><ul id="summaryList" class="summary-list"></ul></section>
+        </div>
+      </section>
+
+      <section id="tab-budget" class="tab">
+        <section class="panel">
+          <h2>Monthly Budget</h2>
+          <label class="field">Monthly Income <input id="monthlyIncome" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" /></label>
+          <div class="section-head"><h3>Expense Categories</h3><button id="addCategoryBtn" class="btn ghost" type="button">Add Category</button></div>
+          <div id="expenseFields" class="expense-grid"></div>
+        </section>
+      </section>
+
+      <section id="tab-bills" class="tab">
+        <section class="panel">
+          <div class="section-head"><h2>Bills & Due Dates</h2><button id="addBillBtn" class="btn primary" type="button">Add Bill</button></div>
+          <input id="billSearch" class="search-input" placeholder="Search bills" />
+          <div id="billList" class="list"></div>
+        </section>
+      </section>
+
+      <section id="tab-receipts" class="tab">
+        <section class="panel">
+          <div class="section-head"><h2>Receipt Scanner</h2><label class="btn ghost file-btn" for="receiptImageInput">Upload Image</label></div>
+          <input id="receiptImageInput" type="file" accept="image/*" capture="environment" hidden />
+          <div class="receipt-layout">
+            <div>
+              <div class="receipt-frame">
+                <video id="video" autoplay playsinline muted></video>
+                <img id="receiptPreview" alt="Receipt preview" />
+                <div id="receiptEmpty" class="receipt-empty"><strong>Scan a receipt</strong><span>Use the camera, capture OCR, or upload an image.</span></div>
+              </div>
+              <canvas id="canvas" hidden></canvas>
+              <div class="toolbar">
+                <button id="startCameraBtn" class="btn primary" type="button">Start Camera</button>
+                <button id="captureOcrBtn" class="btn primary" type="button" disabled>Capture OCR</button>
+                <button id="stopCameraBtn" class="btn ghost" type="button" disabled>Stop</button>
+                <button id="runOcrBtn" class="btn ghost" type="button" disabled>Read OCR</button>
+              </div>
+              <div class="progress"><div id="ocrProgress"></div></div>
+              <div id="ocrStatus" class="status">Ready for a receipt image or camera scan.</div>
+            </div>
+            <div>
+              <label class="field">Merchant <input id="receiptMerchant" placeholder="Store name" /></label>
+              <div class="field-grid"><label class="field">Date <input id="receiptDate" type="date" /></label><label class="field">Total <input id="receiptTotal" inputmode="decimal" placeholder="0.00" /></label></div>
+              <label class="field">Category <select id="receiptCategory"></select></label>
+              <label class="field">OCR Text <textarea id="ocrText" rows="7" placeholder="OCR text appears here. You can edit it before saving."></textarea></label>
+              <div class="toolbar"><button id="saveReceiptBtn" class="btn primary" type="button">Save Receipt</button><button id="clearScanBtn" class="btn ghost" type="button">Clear</button></div>
+            </div>
+          </div>
+          <div class="section-head receipt-history-head"><h3>Saved Receipts</h3><button id="clearReceiptsBtn" class="btn ghost" type="button">Clear Receipts</button></div>
+          <div id="receiptList" class="receipt-list"></div>
+        </section>
+      </section>
+
+      <section id="tab-settings" class="tab">
+        <section class="panel">
+          <h2>App Settings</h2>
+          <label class="field">Global Payment Link Template <input id="paymentLinkTemplate" placeholder="https://pay.example.com?bill={title}&amount={amount}" /></label>
+          <div class="toolbar"><button id="saveSettingsBtn" class="btn primary" type="button">Save Settings</button><button id="exportDataBtn" class="btn ghost" type="button">Export Backup</button><label class="btn ghost file-btn" for="importDataInput">Import Backup</label></div>
+          <input id="importDataInput" type="file" accept="application/json" hidden />
+          <div id="settingsStatus" class="status"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="billDialog"><form id="billForm" class="dialog-form" method="dialog"><h2 id="billDialogTitle">Add Bill</h2><input id="billId" type="hidden" /><label class="field">Bill Name <input id="billName" required /></label><div class="field-grid"><label class="field">Category <input id="billCategory" placeholder="Insurance" /></label><label class="field">Amount <input id="billAmount" type="number" min="0" step="0.01" required /></label></div><div class="field-grid"><label class="field">Due Date <input id="billDueDate" type="date" required /></label><label class="field">Payment URL <input id="billPaymentUrl" placeholder="https://..." /></label></div><label class="field">Notes <textarea id="billNotes" rows="3"></textarea></label><div class="dialog-actions"><button id="cancelBillBtn" class="btn ghost" type="button">Cancel</button><button class="btn primary" type="submit">Save Bill</button></div></form></dialog>
+  <dialog id="categoryDialog"><form id="categoryForm" class="dialog-form" method="dialog"><h2>Add Category</h2><label class="field">Category Name <input id="categoryName" required placeholder="Internet" /></label><label class="field">Short Label <input id="categoryIcon" maxlength="4" placeholder="WEB" /></label><div class="dialog-actions"><button id="cancelCategoryBtn" class="btn ghost" type="button">Cancel</button><button class="btn primary" type="submit">Add Category</button></div></form></dialog>
+  <dialog id="installDialog"><div class="dialog-form"><h2>Install Budget Planner Premium+</h2><p id="installInstructions" class="install-help"></p><div class="dialog-actions"><button id="closeInstallBtn" class="btn primary" type="button">Done</button></div></div></dialog>
 </body>
 </html>
