@@ -1,1 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc"><title id="title">Budget Planner Premium Plus circled N logo</title><desc id="desc">A polished circular badge with a fancy letter N for Budget Planner Premium Plus.</desc><defs><radialGradient id="badge" cx="32%" cy="22%" r="76%"><stop offset="0" stop-color="#f8fff9"/><stop offset=".18" stop-color="#baf7d1"/><stop offset=".48" stop-color="#22c55e"/><stop offset="1" stop-color="#0b1727"/></radialGradient><linearGradient id="ring" x1="82" y1="64" x2="430" y2="448" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff7c2"/><stop offset=".32" stop-color="#f4c95d"/><stop offset=".7" stop-color="#20d56f"/><stop offset="1" stop-color="#124d2f"/></linearGradient><linearGradient id="letter" x1="143" y1="122" x2="370" y2="394" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#fff2b3"/><stop offset=".72" stop-color="#f4c95d"/><stop offset="1" stop-color="#d99b20"/></linearGradient><filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#00130a" flood-opacity=".38"/><feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#f4d46a" flood-opacity=".34"/></filter></defs><rect width="512" height="512" rx="116" fill="#07111f"/><circle cx="256" cy="256" r="212" fill="url(#ring)" filter="url(#soft-shadow)"/><circle cx="256" cy="256" r="178" fill="url(#badge)" stroke="#fff" stroke-opacity=".32" stroke-width="4"/><path d="M147 371c28-5 40-28 40-67V182c0-20-10-30-31-32v-16h88l121 159V203c0-39-13-61-43-68v-16h107v16c-28 6-39 28-39 67v174h-30L213 184v119c0 41 14 62 45 68v16H147v-16z" fill="#10251b" opacity=".42"/><path d="M136 365c32-5 45-30 45-72V170c0-20-10-31-32-34v-17h91l126 166v-95c0-41-14-66-46-72v-17h113v17c-30 6-43 30-43 72v189h-32L206 179v114c0 43 15 66 49 72v17H136v-17z" fill="url(#letter)" stroke="#fff" stroke-opacity=".46" stroke-width="3"/><path d="M178 115c27-24 67-38 109-34" fill="none" stroke="#fff" stroke-opacity=".52" stroke-width="10" stroke-linecap="round"/><circle cx="351" cy="120" r="9" fill="#fff" fill-opacity=".72"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Budget Flow Pro logo</title>
+  <desc id="desc">A polished circled N mark for Budget Flow Pro.</desc>
+  <defs>
+    <linearGradient id="badge" x1="38" y1="28" x2="215" y2="226" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f5e5b"/>
+      <stop offset="0.48" stop-color="#167f7b"/>
+      <stop offset="1" stop-color="#2f6fbb"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="50" y1="28" x2="204" y2="226" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f7d77c"/>
+      <stop offset="0.5" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#d95d48"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#0f1720" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#f6f4ef"/>
+  <circle cx="128" cy="128" r="103" fill="url(#badge)" filter="url(#soft)"/>
+  <circle cx="128" cy="128" r="86" fill="none" stroke="url(#ring)" stroke-width="10"/>
+  <path d="M76 178V74h25l56 67V74h27v104h-24l-57-69v69H76Z" fill="#ffffff"/>
+  <path d="M103 74h29l51 104h-25L103 74Z" fill="#f7d77c" opacity="0.82"/>
+  <circle cx="88" cy="188" r="7" fill="#d95d48"/>
+</svg>
