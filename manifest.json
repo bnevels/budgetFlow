@@ -1,20 +1,21 @@
 {
-  "name": "Budget Planner Premium Plus",
-  "short_name": "Budget Plus",
+  "name": "Budget Flow Pro",
+  "short_name": "Flow Pro",
+  "description": "Standalone budget, bill, receipt, and Stripe payment app.",
   "id": "./",
-  "start_url": "./",
-  "scope": "./",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
-  "background_color": "#f5f7fb",
-  "theme_color": "#0f9f6e",
-  "description": "Standalone shared budget app with bills, receipt scanning, Camera OCR, payment links, and no subscription requirement.",
+  "background_color": "#f6f4ef",
+  "theme_color": "#167f7b",
   "orientation": "portrait-primary",
   "categories": ["finance", "productivity", "utilities"],
   "icons": [
-    { "src": "icons/logo-n.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
-  ],
-  "shortcuts": [
-    { "name": "Receipts", "short_name": "Receipts", "description": "Open receipt scanner", "url": "./?tab=receipts", "icons": [{ "src": "icons/logo-n.svg", "sizes": "any", "type": "image/svg+xml" }] }
-  ],
-  "prefer_related_applications": false
+    {
+      "src": "icons/logo-n.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
